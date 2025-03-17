@@ -1,11 +1,16 @@
-# stats220
+# Stats220
 
-This is my repo for STATS 220. 
+## This is my repo for STATS 220. 
 
-A little about me:
+### About me:
 
-- I am undertaking a degree in computer  science
-- I am taking STATS 220 because want learn more about use language R
+- I am undertaking a degree in ***computer  science***
+- I am taking STATS 220 because want learn more about use **language R**
 - I am interested in learning about how to communicate data by using R
 
-A meme that captures how I currently feel about my university studies is ![](https://c.tenor.com/8druEACXtX8AAAAd/tenor.gif)
+### Other stat courses I have completed
+1. *stat101*
+2. *stat20X*
+### Useful link
+click [here](https://github.com/onions-coin) to get my github profile
+
