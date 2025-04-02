@@ -1,0 +1,80 @@
+---
+title: My dynamic report
+output: html_fragment
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+
+```
+
+```{css}
+
+```
+
+## Analytics
+
+
+I tracked the average time people spend on social media to find out what they use social media for every day. The most common purposes are to connect with family and for entertainment (other purposes are less common).
+
+Most people spend an average of 2-4 hours a day on social media.
+
+At least half of the people believe that social media will affect their work or study efficiency, and hem also think that using social media will bring them some anxiety(base on answer "Maybe").
+
+
+```{r}
+# read survey data 
+logged_data <- read.csv("https://docs.google.com/spreadsheets/d/e/2PACX-1vTRuypbm1M7F0p_TK4NNSgGOc8DIQepCtZXYoUTb5G3SdFiU9iEQ95H5D1y6zFxd7Y8Et_h99VUCeCT/pub?output=csv")
+# rename the column name from the logged_data,，then as the new data name is lasted_data
+#display the 10 rows logged_data 
+print(slice(logged_data,1:10))
+# Removal of less important data (eg. what social media platform to use)
+lasted_data <- logged_data %>%
+  rename(
+    Time_pre = 2,
+    Purpose = 4,
+    Influence_extent= 5,
+    Feel_Anxiety = 6
+  ) %>% select(Time_pre,Purpose,Influence_extent, Feel_Anxiety)
+#display the row(1-10) lasted_data
+print(slice(lasted_data,1:10))
+
+#How many people do this survey
+number_of_people <-nrow(lasted_data)
+
+#find the mean influence extent of Social media affects efficiency influence extent
+mean_of_extent <-mean(lasted_data$Influence_extent)
+mean_of_extent <- round(mean_of_extent, 2)
+paste("There are",number_of_people,"response of my survey.")
+paste("The mean influence extent of social media affects efficiency influenc extent is ",mean_of_extent)
+
+```
+
+
+```{r}
+
+
+# create plot1 to show average hour and fill by purpose
+plot1 <-lasted_data %>%
+  ggplot()+
+  geom_bar(aes(x=Time_pre, fill =Purpose),width = 0.5)+
+  labs(x= "Average time use soical media",
+       y = "Number of people",
+       title = "Average time to use soical media for diferent purpose")
+
+
+# create plot2 to show the social meida affects influence extend, and fill by Feel_Anxiety
+plot2 <-lasted_data %>%
+  ggplot()+
+  geom_bar(aes(y=Influence_extent, fill= Feel_Anxiety),width=0.5)+
+  labs(x= "Number of people",
+       y = "Influence Extent",
+       title = "Social media affects efficiency influence extent")
+
+
+print(plot1)
+print(plot2)
+
+```
+
+
