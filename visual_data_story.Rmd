@@ -1,0 +1,62 @@
+---
+title: The Story of the Visual Data for Bus Tracker
+output: html_document
+---
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo=FALSE, message=FALSE, warning=FALSE, error=FALSE)
+```
+
+```{js}
+$(function() {
+  $(".level2").css('visibility', 'hidden');
+  $(".level2").first().css('visibility', 'visible');
+  $(".container-fluid").height($(".container-fluid").height() + 300);
+  $(window).on('scroll', function() {
+    $('h2').each(function() {
+      var h2Top = $(this).offset().top - $(window).scrollTop();
+      var windowHeight = $(window).height();
+      if (h2Top >= 0 && h2Top <= windowHeight / 2) {
+        $(this).parent('div').css('visibility', 'visible');
+      } else if (h2Top > windowHeight / 2) {
+        $(this).parent('div').css('visibility', 'hidden');
+      }
+    });
+  });
+})
+```
+
+```{css}
+.figcaption {display: none}
+body {
+  background-color: #deebf7;
+  font-family: Serif
+}
+```
+
+## Does violating bus rules affect bus service ratings?
+For Auckland's public transport, I want to know whether people who break the rules on the bus will affect people's rating of the bus service. Through plot analysis, I can find that when there are no people who break the rules on the bus, people give higher ratings than when there are people who break the rules on the bus.
+
+![rate vs violating bus rules](plot1.png)
+
+## What is the purpose of taking the bus at different times?
+Secondly, there are many students on the bus. By recording the purpose of the students, we can get the average time for students to go to school and go home.
+
+
+![purpose of taking the bus at different times](plot2.png) 
+
+
+## Dose bus Crowded will affect bus Rating?
+For Auckland's public transport, I wanted to know whether the level of crowding on buses affects people's evaluation of the bus service.
+
+![mean_rating with different level crowded ](plot3.png) 
+
+## Is it crowded at different times?
+Does the bus become more crowded at different times? Does the level of crowding change according to the time?
+
+![Is it crowded at different times?](plot4.png)
+
+
+
